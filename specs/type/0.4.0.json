@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://recap.build/specs/type/0.3.0.json",
+  "$id": "https://recap.build/specs/type/0.4.0.json",
   "$ref": "#/$defs/RecapType",
   "$defs": {
     "RecapType": {
@@ -40,6 +40,9 @@
         },
         {
           "$ref": "#/$defs/RecapAliasReference"
+        },
+        {
+          "$ref": "#/$defs/RecapUnknown"
         }
       ],
       "allOf": [
@@ -418,6 +421,26 @@
         "required": [
           "alias"
         ]
+      }
+    },
+    "RecapUnknown": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["unknown"]
+        },
+        "alias": {
+          "type": "string",
+          "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z0-9_]*)+$"
+        },
+        "doc": {
+          "type": "string"
+        },
+        "logical": {
+          "type": "string"
+        }
       }
     },
     "RecapLogicalTypes": {
